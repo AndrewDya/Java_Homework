@@ -26,17 +26,15 @@ public class task_2 {
 
         Map<String, Integer> nameCountMap = new HashMap<>();
 
-        // Подсчет повторений имен
         for (String employee : employees) {
             String name = employee.split(" ")[0];
             nameCountMap.put(name, nameCountMap.getOrDefault(name, 0) + 1);
         }
 
-        // Сортировка по убыванию популярности
+
         List<Map.Entry<String, Integer>> sortedList = new ArrayList<>(nameCountMap.entrySet());
         sortedList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
 
-        // Вывод результатов
         for (Map.Entry<String, Integer> entry : sortedList) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
