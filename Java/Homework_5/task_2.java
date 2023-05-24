@@ -3,7 +3,7 @@ import java.util.*;
 
 public class task_2 {
     public static void main(String[] args) {
-        List<String> employeeList = Arrays.asList(
+        List<String> employees = Arrays.asList(
                 "Иван Иванов",
                 "Светлана Петрова",
                 "Кристина Белова",
@@ -26,20 +26,19 @@ public class task_2 {
 
         Map<String, Integer> nameCountMap = new HashMap<>();
 
-        for (String employee : employeeList) {
-            String firstName = employee.split(" ")[0];
-            nameCountMap.put(firstName, nameCountMap.getOrDefault(firstName, 0) + 1);
+        // Подсчет повторений имен
+        for (String employee : employees) {
+            String name = employee.split(" ")[0];
+            nameCountMap.put(name, nameCountMap.getOrDefault(name, 0) + 1);
         }
 
-        List<Map.Entry<String, Integer>> sortedNames = new ArrayList<>(nameCountMap.entrySet());
-        sortedNames.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+        // Сортировка по убыванию популярности
+        List<Map.Entry<String, Integer>> sortedList = new ArrayList<>(nameCountMap.entrySet());
+        sortedList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
 
-        for (Map.Entry<String, Integer> entry : sortedNames) {
-            String name = entry.getKey();
-            int count = entry.getValue();
-            if (count > 1) {
-                System.out.println(name + ": " + count + " повторений");
-            }
+        // Вывод результатов
+        for (Map.Entry<String, Integer> entry : sortedList) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
 }
